@@ -40,4 +40,8 @@ public class UserController {
 		userService.delete(id);
 		return "redirect:userList";
 	}
+	@RequestMapping("/")
+	public void  demoMenthod(){
+		System.out.println("123");
+	}
 }
