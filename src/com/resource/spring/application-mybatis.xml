@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 加载配置文件-->
+    <bean id="propertyConfigure"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:com/resource/jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="datasource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${driverClassName}"/>
+        <property name="url" value="${url}" />
+        <property name="username" value="${username}" />
+        <property name="password" value="${password}" />
+        <property name="initialSize" value="20"/>
+        <property name="maxActive" value="100"/>
+    </bean>
+    <!-- mybatis文件配置，扫描所有mapper文件-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:dataSource-ref="datasource" p:configLocation="classpath:com/resource/mybatis-config.xml"
+          p:mapperLocations="classpath:com/resource/mapper/*.xml" lazy-init="true" />  <!--configLocation为mybatis属性
+		mapperLocations为所有mapper -->
+
+    <!-- spring与mybatis整合配置，扫描所有dao -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+          p:basePackage="com.zhh.dao" p:sqlSessionFactoryBeanName="sqlSessionFactory" lazy-init="true" />
+
+    <!-- 对数据源进行事务管理 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="datasource"  lazy-init="true"/>
+
+
+</beans>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhh.dao.UserDao">
+    <resultMap id="users" type="com.zhh.beans.User">
+        <result property="userName" column="name" javaType="String" />
+        <result property="password" column="password" javaType="String"/>
+    </resultMap>
+    <insert id="add" parameterType="com.zhh.beans.User">
+        INSERT INTO USER (name,password) VALUES (#{userName},#{password})
+    </insert>
+    <delete id="delete">
+        DELETE from USER WHERE id = #{id}
+    </delete>
+    <select id="list" resultMap="users">
+        select * from USER ;
+    </select>
+</mapper>
