@@ -22,6 +22,7 @@ public class UserController {
 		this.userService = userService;
 	}
 
+
 	@RequestMapping(value="addUser",method = RequestMethod.POST)
 	public String addUser(Model model,User user,HttpServletRequest request){
 		log.info("user"+user.getPassword());
