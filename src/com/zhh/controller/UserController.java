@@ -35,6 +35,7 @@ public class UserController {
 		model.addAttribute("users",users);
 		log.info("33333333333333344433334444444433");
 		log.info("33333333333333344433334444444433");
+		log.info("33333333333333344433334444444433");
 		return "userList";
 	}
 	@RequestMapping(value = "delete",method = RequestMethod.GET)
