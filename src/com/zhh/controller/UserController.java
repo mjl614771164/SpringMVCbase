@@ -33,7 +33,7 @@ public class UserController {
 	public String userList(Model model){
 		List<User> users =  userService.list();
 		model.addAttribute("users",users);
-		log.info("3333333333333333333333333");
+		log.info("33333333333333333334444444433");
 		return "userList";
 	}
 	@RequestMapping(value = "delete",method = RequestMethod.GET)
