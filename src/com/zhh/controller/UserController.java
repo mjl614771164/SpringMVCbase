@@ -34,6 +34,7 @@ public class UserController {
 		List<User> users =  userService.list();
 		model.addAttribute("users",users);
 		log.info("33333333333333344433334444444433");
+		log.info("33333333333333344433334444444433");
 		return "userList";
 	}
 	@RequestMapping(value = "delete",method = RequestMethod.GET)
@@ -43,6 +44,6 @@ public class UserController {
 	}
 	@RequestMapping("/")
 	public void  demoMenthod(){
-		System.out.println("123234");
+		System.out.println("11111111");
 	}
 }
